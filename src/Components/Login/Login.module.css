@@ -1,0 +1,13 @@
+.form{
+    background: #2b2738;
+    color: white;
+    padding: 12px;
+}
+.btn{
+    background: #6e54b5;
+    width: 100%;
+    border-radius: 12px;
+}
+.inputField{
+    background-color: #3b364c;
+}
