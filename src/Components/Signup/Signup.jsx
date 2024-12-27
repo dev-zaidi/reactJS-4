@@ -1,67 +1,36 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import styles from './Signup.module.css'
-import Button from '../Button/Button';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Signup = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handleSignup = (event) => {
-    event.preventDefault();
-    swal('Wohoo!',`Account created using ${email}`,'success')
+// SignUp Component
+const Signup = ({ switchToLogin }) => {
+  const handleSignup = (e) => {
+    e.preventDefault();
+    swal.fire({
+      icon: 'success',
+      title: 'Sign Up Successful',
+      text: 'Your account has been created successfully!'
+    });
   };
-
   return (
     <div className={styles.form}>
-      <br />
-      <h2 className="text-center">Sign Up</h2>
-      <br />
+      <h2>Sign Up</h2>
       <form onSubmit={handleSignup}>
-        <div className="mb-3">
-          <label className="form-label">Username</label>
-          <input
-            type="text"
-            className='form-control'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter your username"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Create a password"
-            required
-          />
-        </div>
-        <Button text='Create Account'/>
+        <label>Username:</label>
+        <input className={styles.inputField} placeholder='Enter your name' type="text" name="username" required/>
+        <br /><br />
+        <label>Email:</label>
+        <input className={styles.inputField} placeholder='Enter your email' type="email" name="email" required/>
+        <br /><br />
+        <label>Password:</label>
+        <input className={styles.inputField} placeholder='Enter your password' type="password" name="password" required />
+        <br /><br />
+        <button className={styles.btn} type="submit">Sign Up</button>
       </form>
-      <div className="text-center mt-3">
+      <p>
         Already have an account?{' '}
-        <button className='btn btn-link' onClick={() => navigate('/login')}>
-          Login
-        </button>
-      </div>
+        <span className='btn btn-link' onClick={switchToLogin}>Log in</span>
+      </p>
     </div>
   );
 };
