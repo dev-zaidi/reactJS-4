@@ -1,7 +1,8 @@
 .form{
     background: #2b2738;
     color: white;
-    padding: 12px;
+    padding: 24px;
+    margin-top: 10px;
 }
 .btn{
     background: #6e54b5;
@@ -10,4 +11,8 @@
 }
 .inputField{
     background-color: #3b364c;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    width: 100%;
 }
