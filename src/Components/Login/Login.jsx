@@ -1,57 +1,36 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import styles from './Login.module.css';
-import Button from '../Button/Button';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    swal('Welcome',`user ${email}`,'success')
+const Login = ({ switchToSignUp }) => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    swal.fire({
+      icon: 'success',
+      title: 'Login Successful',
+      text: 'Welcome back!'
+    });
   };
-
   return (
     <div className={styles.form}>
-      <br />
-      <h2 className="text-center">Login</h2>
-      <br />
+      <h2>Log In</h2>
       <form onSubmit={handleLogin}>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-            required
-          />
-        </div>
-        <Button text='Login'/>
+        <label>Email:</label>
+        <input className={styles.inputField} placeholder='Enter your email' type="email" name="email" required />
+        <br /><br />
+        <label>Password:</label>
+        <input className={styles.inputField} placeholder='Enter password' type="password" name="password" required/>
+        <br /><br />
+        <button  className={styles.btn} type="submit">Log In</button>
       </form>
-      <div className="text-center mt-3">
+      <p>
         Don't have an account?{' '}
-        <button className="btn btn-link" onClick={() => navigate('/signup')}>
-          Sign Up
-        </button>
-      </div>
+        <span className='btn btn-link' onClick={switchToSignUp}>Sign up</span>
+      </p>
     </div>
   );
 };
+
 
 export default Login;
